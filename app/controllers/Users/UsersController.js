@@ -1,4 +1,5 @@
 const crypto = require('../../utils/Crypto');
+const {express} = require('../../utils/RequiredPackages');
 exports.register = async (req, res) => {
     try {
         const body = req.body;
