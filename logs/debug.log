@@ -1,0 +1,5 @@
+{"info":{"date_time":"Tue Sep 05 2023 03:15:10 GMT+0530 (India Standard Time)"},"level":"info","message":"UserController@register","service":"your_service"}
+{"info":{"date_time":"Tue Sep 05 2023 03:23:53 GMT+0530 (India Standard Time)"},"level":"info","message":"UserController@register","service":"your_service"}
+{"info":{"date_time":"Tue Sep 05 2023 03:24:18 GMT+0530 (India Standard Time)"},"level":"info","message":"UserController@register","service":"your_service"}
+{"info":{"date_time":"Tue Sep 05 2023 03:25:58 GMT+0530 (India Standard Time)"},"level":"info","message":"UserController@register","service":"your_service"}
+{"info":{"date_time":"Tue Sep 05 2023 03:25:58 GMT+0530 (India Standard Time)"},"level":"error","message":"UserController@register","service":"your_service"}
