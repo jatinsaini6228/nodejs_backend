@@ -2,7 +2,7 @@ const {winston} = require('./RequiredPackages');
 
 
 // Info
-exports.loggerInfo = async (message = null, service = "your_service") => {
+exports.loggerInfo = async (message, service = "", data) => {
     const logger = winston.createLogger({
         level: "info",
         format: winston.format.json(),
@@ -44,9 +44,10 @@ exports.loggerInfo = async (message = null, service = "your_service") => {
 
         d = Date();
         logger.log({
-            data: {date_time: d},
-            level: "info",
-            message: message
+        0: {date_time: d},
+        level: "info",
+        data,
+        message
         });
         
         // logger.error('ERROR: distributed');
@@ -54,7 +55,7 @@ exports.loggerInfo = async (message = null, service = "your_service") => {
 
 
 // Error
-exports.loggerError = async (message = null, service = "your_service") => {
+exports.loggerError = async (message, service = "", data) => {
     const logger = winston.createLogger({
         format: winston.format.json(),
         defaultMeta: { service: service },
@@ -77,9 +78,10 @@ exports.loggerError = async (message = null, service = "your_service") => {
 
       d = Date();
       logger.error({
-          data: {date_time: d},
-          level: "error",
-          message: message
+        0: {date_time: d},
+        level: "error",
+        data,
+        message
       });
 
 }
