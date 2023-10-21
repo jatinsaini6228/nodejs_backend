@@ -3,21 +3,22 @@ const mysql = require('mysql2/promise');
 const { Sequelize } = require('sequelize');
 const dotenv = require("dotenv");
 const path = require("path");
+dotenv.config({path: path.join(__dirname, '../../.env')});
 
 
-
+// Mongo DB
 exports.mongoConnection = async () => {
     try {
         const db = await mongoose.connect(process.env.MONGOURL);
-        if(db) console.log("MongoDb Connected vai Mongoose Connect...");
+        if(db) console.log(process.env.MONGOURL+" MongoDb Connected vai Mongoose Connect...");
         return db;
     } 
     catch (error) {
-        console.error({status: false, error: "ExceptionError", errorMessage: error.message, errorName: error.name})    
+        console.error({status: false, error: "ExceptionError", errorMessage: error.message, errorName: error.name, mongooseURL: process.env.MONGOURL })    
     }
 }
 
-
+// SQL
 exports.mysqlConnection = async () => {
     try {
         // create the connection
@@ -48,8 +49,3 @@ exports.sequelize = async () => {
         console.error({status: false, error: "ExceptionError", errorMessage: error.message, errorName: error.name})    
     }
 }
-
-
-
-
-

@@ -8,7 +8,8 @@ exports.dbConn = async () => {
         const database_driver = process.env.DATABASE_DRIVER;
         const isSequelizeActive = process.env.USE_SEQUELIZE
         let conn;
-        if (isSequelizeActive == 'n') {
+        if (isSequelizeActive == 'n') 
+        {
             if (database_driver == 'mongodb') {
                 conn = await db.mongoConnection();
             } else if (database_driver == 'mysql') {

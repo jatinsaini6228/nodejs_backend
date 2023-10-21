@@ -13,7 +13,7 @@ const HMAC_SECRET = process.env.HMAC_SECRET;
 const key = crypto.randomBytes(32);
 const iv = crypto.randomBytes(16);
 
-exports.encrypt = (text) => {
+exports.encrypt = async (text) => {
     let cipher = crypto.createCipheriv(ALGO, Buffer.from(key), iv);
     let encrypted = cipher.update(text);
     encrypted = Buffer.concat([encrypted, cipher.final()]);
@@ -21,7 +21,7 @@ exports.encrypt = (text) => {
     encryptedData: encrypted.toString('hex') };
 }
 
-exports.decrypt = (text) =>  {
+exports.decrypt = async (text) =>  {
     let iv = Buffer.from(text.iv, 'hex');
     let encryptedText = Buffer.from(text.encryptedData, 'hex');
     let decipher = crypto.createDecipheriv(ALGO, Buffer.from(key), iv);
@@ -31,14 +31,14 @@ exports.decrypt = (text) =>  {
 }
  
 // Hmac
-exports.encryptHmac = (text) => {
+exports.encryptHmac = async (text) => {
     /* //  HMAC is a MAC/keyed hash, not a cipher. It's not designed to be decrypted. If you want to encrypt something, use a cipher, like AES, preferably in an authenticated mode like AES-GCM. */
 
     const hash = crypto.createHmac(HMAC_ALGO, HMAC_SECRET).update(text).digest('hex');
     return hash
 }
 
-exports.matchHmac = (hash, string) => {
+exports.matchHmac = async (hash, string) => {
     if (hash === crypto.createHmac(HMAC_ALGO, HMAC_SECRET).update(string).digest('hex')) {
         return true;
     } else {
@@ -47,11 +47,11 @@ exports.matchHmac = (hash, string) => {
 }
 
 // Base 64
-exports.base64enc = (string) => {
+exports.base64enc = async (string) => {
    return Buffer.from(string).toString('base64')
 }
 
-exports.base64dec = (base64EncString) => {
+exports.base64dec = async (base64EncString) => {
     return Buffer.from(base64EncString, 'base64').toString('ascii')
  }
 
